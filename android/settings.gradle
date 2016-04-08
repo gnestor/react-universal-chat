@@ -1,0 +1,3 @@
+rootProject.name = 'unichat'
+
+include ':app'
