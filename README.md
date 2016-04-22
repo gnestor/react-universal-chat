@@ -34,3 +34,4 @@
     * Open Android AVD Manager: `android avd`
     * Start
     * `npm run android`
+* Run on web (coming soon!): `npm run web`

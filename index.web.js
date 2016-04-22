@@ -5,7 +5,7 @@ import React, {
   Text,
   View
 } from 'react-native'
-import Chat from './Chat'
+import Chat from './Chat.web'
 
 class unichat extends Component {
   render() {

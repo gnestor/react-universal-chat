@@ -3,26 +3,14 @@ import React, {
   ListView,
   StyleSheet
 } from 'react-native'
-import ChatItem from './ChatItem'
+import ChatItem from './ChatItem.web'
 
 export default class ChatList extends Component {
-
-  // constructor(props) {
-  //   super(props)
-  // }
-
-  // componentWillUpdate() {
-  //   this.shouldScrollBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight
-  // }
-
-  // componentDidUpdate() {
-  //   if (this.shouldScrollBottom) document.body.scrollTop = document.body.scrollHeight
-  // }
 
   render() {
     let children = this.props.messages.map(message => (
       <ChatItem
-        message={row}
+        message={message}
         name={this.props.name}
         handleRemove={this.props.handleRemove}
       />
@@ -31,7 +19,6 @@ export default class ChatList extends Component {
       <ListView
         style={styles.listView}
         children={children}
-        renderRow={this.renderRow}
       />
     )
   }

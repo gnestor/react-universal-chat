@@ -6,8 +6,9 @@ import React, {
   TextInput,
   View
 } from 'react-native'
+import ReactDOM from 'react-dom'
 import Rebase from 're-base'
-import ChatList from './ChatList'
+import ChatList from './ChatList.web'
 import Prompt from './Prompt'
 import Button from './Button'
 
@@ -22,9 +23,11 @@ export default class Chat extends Component {
       input: '',
       name: ''
     }
+    this.node = null
     this.shouldScrollBottom = false
     this.handlePrompt = this.handlePrompt.bind(this)
     this.handleChange = this.handleChange.bind(this)
+    this.handleKeyDown = this.handleKeyDown.bind(this)
     this.handleSend = this.handleSend.bind(this)
     this.handleRemove = this.handleRemove.bind(this)
   }
@@ -37,11 +40,22 @@ export default class Chat extends Component {
     })
   }
 
+  componentWillUpdate() {
+    let node = ReactDOM.findDOMNode(this.node)
+    this.shouldScrollBottom = node.scrollTop + window.innerHeight >= node.scrollHeight
+  }
+
+  componentDidUpdate() {
+    let node = ReactDOM.findDOMNode(this.node)
+    if (this.shouldScrollBottom) node.scrollTop = node.scrollHeight
+  }
+
   render() {
     return (
       <View style={styles.view}>
         {this.state.name ? null : <Prompt style={styles.prompt} onSubmit={this.handlePrompt} />}
         <ChatList
+          ref={ref => this.node = ref}
           style={styles.list}
           messages={this.state.messages}
           name={this.state.name}
@@ -53,6 +67,7 @@ export default class Chat extends Component {
           autoFocus={true}
           accessibilityLabel="Say something..."
           onChangeText={this.handleChange}
+          onKeyDown={this.handleKeyDown}
           placeholder="Say something..."
           value={this.state.input}
         />
@@ -76,6 +91,11 @@ export default class Chat extends Component {
 
   handleChange(text) {
     this.setState({input: text})
+  }
+
+  handleKeyDown(event) {
+    console.log('handleKeyDown')
+    if (event.key === 'Enter') this.handleSend()
   }
 
   handleSend() {

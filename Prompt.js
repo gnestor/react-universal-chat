@@ -73,10 +73,10 @@ const styles = StyleSheet.create({
   },
   textInput: {
     height: 60,
+    padding: 15,
     backgroundColor: 'white',
     borderColor: '#CCCCCC',
-    borderWidth: 1,
-    paddingLeft: 10
+    borderWidth: 1
   },
   buttonView: {
     width: 60,

@@ -9,7 +9,7 @@ import React, {
 export default function Button(props) {
   let {styles} = props
   return (
-    <TouchableHighlight onPress={props.onPress}>
+    <TouchableHighlight style={{backgroundColor: 'white'}} onPress={props.onPress}>
       <View style={styles.view}>
         <Text style={styles.text}>{props.text}</Text>
       </View>
@@ -17,14 +17,14 @@ export default function Button(props) {
   )
 }
 
-// const styles = StyleSheet.create({
-//   view: {
-//     backgroundColor: 'blue',
-//     padding: 15,
-//     paddingHorizontal: 45
-//   },
-//   text: {
-//     fontSize: 17,
-//     color: 'white'
-//   }
-// })
+const styles = StyleSheet.create({
+  view: {
+    backgroundColor: 'blue',
+    padding: 15,
+    paddingHorizontal: 45
+  },
+  text: {
+    fontSize: 17,
+    color: 'white'
+  }
+})

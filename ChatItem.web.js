@@ -6,6 +6,7 @@ import React, {
   Text,
   View
 } from 'react-native'
+import Highlight from 'react-highlight'
 import Button from './Button'
 import Link from './Link'
 
@@ -95,12 +96,12 @@ export default class ChatItem extends Component {
             </Text>
           )
         })
-      // case /^\`.*\`$/.test(message):
-      //   return (
-      //     <Highlight className='javascript'>
-      //       {message.replace(/\`/g, '')}
-      //     </Highlight>
-      //   )
+      case /^\`.*\`$/.test(message):
+        return (
+          <Highlight className='javascript'>
+            {message.replace(/\`/g, '')}
+          </Highlight>
+        )
       default:
         return (
           <Text
@@ -131,7 +132,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column'
   },
   right: {
-
+    width: 50
   },
   text: {
     fontSize: 17,

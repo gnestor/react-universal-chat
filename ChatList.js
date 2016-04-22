@@ -18,14 +18,6 @@ export default class ChatList extends Component {
     this.renderRow = this.renderRow.bind(this)
   }
 
-  // componentWillUpdate() {
-  //   this.shouldScrollBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight
-  // }
-
-  // componentDidUpdate() {
-  //   if (this.shouldScrollBottom) document.body.scrollTop = document.body.scrollHeight
-  // }
-
   render() {
     let dataSource = this.state.dataSource.cloneWithRows(this.props.messages)
     return (
@@ -33,6 +25,7 @@ export default class ChatList extends Component {
         style={styles.listView}
         dataSource={dataSource}
         renderRow={this.renderRow}
+        enableEmptySections={true}
       />
     )
   }
